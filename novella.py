@@ -70,6 +70,14 @@ def delete_save(save):
         os.remove(f'{save}_novella.json') 
         print(f'Сохранение успешно удалено.')
 
+def save_csv(save):
+    global checkpoint 
+    data = [[save, checkpoint]]
+    with open('game_data.csv', 'a', newline ='') as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
+    print('Сохранение успешно записано в CSV.')
+
 def main():
     global checkpoint
     global good
@@ -81,6 +89,7 @@ def main():
     match (sAnswer):
         case 1: # Автоматическое сохранение чекпоинт 1 и начало
             save = input('Введите имя вашего сохранения: ')
+            save_csv(save)
             game_save(save)
         case 2: # Старт с сохранения
             save = input('Введите имя вашего сохранения: ')
@@ -152,6 +161,7 @@ def main():
         match (sAnswer):
             case 1:
                 checkpoint = 2
+                save_csv(save)
                 game_save(save)
             case 2:
                 print('Весь несохраненный прогресс будет утерян.')
@@ -259,6 +269,7 @@ def main():
         match (sAnswer):
             case 1:
                 checkpoint = 3
+                save_csv(save)
                 game_save(save)
             case 2:
                 print('Весь несохраненный прогресс будет утерян.')
