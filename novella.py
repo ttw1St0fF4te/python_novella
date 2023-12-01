@@ -1,5 +1,6 @@
 import json
 import os
+import csv
 
 title = "Inner issues"
 print(f"Название игры: {title}")
